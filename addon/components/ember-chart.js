@@ -20,6 +20,10 @@ export default Ember.Component.extend({
     this.addObserver('data', this, this.updateChart);
     this.addObserver('data.[]', this, this.updateChart);
     this.addObserver('options', this, this.updateChart);
+
+    if (this.get('drawHandler') && this.get('drawLegend')) {
+      this.get('drawHandler')(this.get('chart').generateLegend());
+    }
   },
 
   willDestroyElement: function(){
@@ -36,5 +40,9 @@ export default Ember.Component.extend({
     chart.config.data = data;
     chart.config.options = options;
     chart.update();
+
+    if (this.get('drawHandler') && this.get('drawLegend')) {
+      this.get('drawHandler')(this.get('chart').generateLegend());
+    }
   }
 });
