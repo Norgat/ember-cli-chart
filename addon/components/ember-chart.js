@@ -21,12 +21,12 @@ export default Ember.Component.extend({
     this.addObserver('data.[]', this, this.updateChart);
     this.addObserver('options', this, this.updateChart);
 
-    if (this.get('drawHandler') && this.get('generateLegend')) {
-      this.get('drawHandler')(this.get('chart').generateLegend());
-    }
-
     if (this.get('pushChart')) {
       this.get('pushChart')(this.get('chart'));
+    }
+
+    if (this.get('drawHandler') && this.get('generateLegend')) {
+      this.get('drawHandler')(this.get('chart').generateLegend());
     }
   },
 
